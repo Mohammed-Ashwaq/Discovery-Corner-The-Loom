@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Loom Textile Experience Centre</title>
+    <style>
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #8b4513;
+            --accent-color: #556b2f;
+            --light-color: #f5f5dc;
+            --dark-color: #2f2f2f;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, transparent 65%, rgba(212, 175, 55, 0.1) 65%, rgba(212, 175, 55, 0.1) 70%, transparent 70%),
+                linear-gradient(-45deg, transparent 65%, rgba(212, 175, 55, 0.1) 65%, rgba(212, 175, 55, 0.1) 70%, transparent 70%);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Cards Layout */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            height: 180px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, transparent 65%, rgba(255, 255, 255, 0.1) 65%, rgba(255, 255, 255, 0.1) 70%, transparent 70%),
+                linear-gradient(-45deg, transparent 65%, rgba(255, 255, 255, 0.1) 65%, rgba(255, 255, 255, 0.1) 70%, transparent 70%);
+            background-size: 30px 30px;
+        }
+        
+        .card-image.books:before {
+            background-color: #8b7355;
+        }
+        
+        .card-image.songs:before {
+            background-color: #6b8e23;
+        }
+        
+        .card-image.iconic:before {
+            background-color: #cd853f;
+        }
+        
+        .card-image.events:before {
+            background-color: #b8860b;
+        }
+        
+        .card-icon {
+            font-size: 4rem;
+            color: white;
+            z-index: 2;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-category {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .card-creator {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .card-description {
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-info {
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-pattern"></div>
+        <div class="container">
+            <h1>The Loom Textile Experience Centre</h1>
+            <p>Exploring the rich textile traditions of Karnataka and beyond through hands-on experiences and curated content</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#songs">Songs</a></li>
+                <li><a href="#iconic-figures">Iconic Figures</a></li>
+                <li><a href="#events">Events</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="books">
+            <div class="section-title">
+                <h2>Textile Books</h2>
+            </div>
+            <div class="cards-container">
+                <!-- Book cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+        
+        <section id="songs">
+            <div class="section-title">
+                <h2>Textile Songs</h2>
+            </div>
+            <div class="cards-container">
+                <!-- Song cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+        
+        <section id="iconic-figures">
+            <div class="section-title">
+                <h2>Iconic Figures</h2>
+            </div>
+            <div class="cards-container">
+                <!-- Iconic figures cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+        
+        <section id="events">
+            <div class="section-title">
+                <h2>Textile Events</h2>
+            </div>
+            <div class="cards-container">
+                <!-- Event cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">The Loom Textile Experience Centre</div>
+                <p>Part of The Proximity Project - Bringing public problems closer by creating places where people can see, touch, and talk about them</p>
+                <div class="contact-info">
+                    <p>Contact us: <a href="mailto:explore@socratus.org" style="color: var(--primary-color);">explore@socratus.org</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Textile data from the spreadsheet
+        const textileData = {
+            books: [
+                {
+                    title: "The Transformation of the Handloom Industry in South India, 1800–1960",
+                    creator: "",
+                    description: "Handloom industry 1800–1960"
+                },
+                {
+                    title: "Textiles of Karnataka",
+                    creator: "",
+                    description: "Overview essays"
+                },
+                {
+                    title: "Visvakarma: Textiles — Art & Artistry",
+                    creator: "",
+                    description: "Exhibition materials"
+                },
+                {
+                    title: "The Fabric of India / Textiles of India",
+                    creator: "V&A",
+                    description: "Compendia"
+                },
+                {
+                    title: "Overdressed: The Shockingly High Cost of Cheap Fashion",
+                    creator: "Elizabeth Cline",
+                    description: "On cheap fashion"
+                },
+                {
+                    title: "Sustainable Fashion and Textiles: Design Journeys",
+                    creator: "Kate Fletcher",
+                    description: "Design journeys"
+                },
+                {
+                    title: "The True Cost & related literature",
+                    creator: "",
+                    description: "Companion texts"
+                }
+            ],
+            songs: [
+                {
+                    title: "Jhini Jhini Bini Chadariya",
+                    creator: "Prahlad Singh Tipanya",
+                    description: "Kabir weaving metaphor"
+                },
+                {
+                    title: "Man Lago Mero Yaar Fakiri Mein",
+                    creator: "Vidya Rao",
+                    description: "Kabir song with loom imagery"
+                },
+                {
+                    title: "Handloom Weavers' Songs",
+                    creator: "",
+                    description: "Tamil folk collections"
+                },
+                {
+                    title: "Kaiyil Oru Kodi",
+                    creator: "Arivumathi",
+                    description: "Film song, weaving metaphor"
+                },
+                {
+                    title: "Pochampally weaving community songs",
+                    creator: "",
+                    description: "Folk weaving songs"
+                },
+                {
+                    title: "Nekaralu Paatalu",
+                    creator: "Prof. Jayashree (collection)",
+                    description: "Nalgonda weavers' songs"
+                }
+            ],
+            iconicFigures: [
+                {
+                    title: "Kamaladevi Chattopadhyay",
+                    creator: "",
+                    description: "Revived handloom sector, founded institutions"
+                },
+                {
+                    title: "Pupul Jayakar",
+                    creator: "",
+                    description: "Documented & promoted handlooms"
+                },
+                {
+                    title: "Laila Tyabji",
+                    creator: "",
+                    description: "Founder of Dastkar, grassroots weavers"
+                },
+                {
+                    title: "Rta Kapur Chishti",
+                    creator: "",
+                    description: "Scholar, Saris of India series"
+                },
+                {
+                    title: "Ela Bhatt",
+                    creator: "",
+                    description: "Founded SEWA, empowered artisans"
+                },
+                {
+                    title: "Martand Singh ('Mapu')",
+                    creator: "",
+                    description: "Curator of Visvakarma Exhibitions"
+                }
+            ],
+            events: [
+                {
+                    title: "Textile Fairs India",
+                    creator: "",
+                    description: "F&A Show, Yarnex, Texindia"
+                },
+                {
+                    title: "Weaver cooperatives",
+                    creator: "Karnataka clusters",
+                    description: "Ilkal, Ramanagara"
+                }
+            ]
+        };
+
+        // Icons for different categories
+        const icons = {
+            books: "📚",
+            songs: "🎵",
+            iconicFigures: "👤",
+            events: "📅"
+        };
+
+        // Function to create card HTML
+        function createCard(item, category) {
+            return `
+                <div class="card">
+                    <div class="card-image ${category}">
+                        <div class="card-icon">${icons[category]}</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                        <h3 class="card-title">${item.title}</h3>
+                        ${item.creator ? `<p class="card-creator">By ${item.creator}</p>` : ''}
+                        <p class="card-description">${item.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to populate sections with cards
+        function populateSection(sectionId, data) {
+            const container = document.querySelector(`#${sectionId} .cards-container`);
+            container.innerHTML = '';
+            
+            data.forEach(item => {
+                container.innerHTML += createCard(item, sectionId);
+            });
+        }
+
+        // Populate all sections when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateSection('books', textileData.books);
+            populateSection('songs', textileData.songs);
+            populateSection('iconic-figures', textileData.iconicFigures);
+            populateSection('events', textileData.events);
+        });
+    </script>
+</body>
+</html>
