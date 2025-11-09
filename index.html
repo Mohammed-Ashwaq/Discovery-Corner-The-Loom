@@ -87,7 +87,7 @@
   .nav-pill a{font-weight:600;color:var(--secondary);text-decoration:none;font-size:.95rem}
   .nav-pill a:hover{color:var(--primary)}
 
-  .container{max-width:900px;margin:0 auto;padding:1rem}
+  .container{max-width:900px;margin:0 auto;padding:1rem;width: 100%;box-sizing: border-box;overflow: hidden;}
   .section{padding:1.25rem 0 1.5rem; position:relative}
 
   .section-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
@@ -95,18 +95,26 @@
   .section-sub{font-size:.9rem;color:var(--muted);margin-top:.25rem}
 
   /* ---------- Enhanced masonry "stones" ---------- */
-  .masonry{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 8px;
-    gap:10px;
-    align-items:start;
-  }
+ .masonry{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap:10px;
+  align-items:start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
 
   /*--------Grid section----------"books"----------*/
   #books-grid{
-    background-image: url('./images/bookSectionBg.png');
+    background: linear-gradient(rgba(85, 74, 74, 0.9), rgba(68, 39, 39, 0.95)), url('./images/bookSectionBg.png');
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 2rem 0;
+    position: relative;
   }
 
   /* Stone tile base: make them feel like rounded pebbles */
@@ -184,11 +192,11 @@
 
   /* variable 'stone' sizes (grid helpers) */
   .g-s1{grid-column: span 2; grid-row: span 32;}
-  .g-s2{grid-column: span 2; grid-row: span 18;}
-  .g-s3{grid-column: span 4; grid-row: span 14;}
-  .g-s4{grid-column: span 3; grid-row: span 22;}
+  .g-s2{grid-column: span 1; grid-row: span 18;}
+  .g-s3{grid-column: span 2; grid-row: span 14;}
+  .g-s4{grid-column: span 2; grid-row: span 22;}
   .g-s5{grid-column: span 1; grid-row: span 14;}
-  .g-s6{grid-column: span 2; grid-row: span 10;}
+  .g-s6{grid-column: span 1; grid-row: span 10;}
   
   /* colorful border effect on hover */
   .stone:hover {
