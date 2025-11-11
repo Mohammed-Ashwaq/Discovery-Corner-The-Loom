@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Everyday s Exhibit</title>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* ---------- Enhanced Color Palette ---------- */
   :root{
@@ -18,21 +19,23 @@
     --card-surface: rgba(255,255,255,0.92);
     --muted:#5b5b5b;
     --shadow: 0 12px 30px rgba(18,18,18,0.08);
+    --text-dark: #1a1a1a;
+    --text-light: #ffffff;
   }
 
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0;
-    font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-family: "Tektur", "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     background:var(--bg);
     background: 
     url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="black"/><circle cx="80" cy="40" r="1" fill="black"/><circle cx="40" cy="80" r="1" fill="black"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>'),
     linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-    color:#222;
+    color:var(--text-dark);
     -webkit-font-smoothing:antialiased;
     -webkit-text-size-adjust:100%;
-    overflow-x:hidden;
+    overflow-x:hidden !important;
   }
 
   a{color:inherit}
@@ -41,7 +44,7 @@
   header{
     position:relative;
     padding:3.2rem 1.25rem 2.4rem;
-    color:#fff;
+    color:var(--text-light);
     border-bottom-left-radius:28px;
     border-bottom-right-radius:28px;
     box-shadow: var(--shadow);
@@ -58,8 +61,21 @@
   header .wrap{
     max-width:900px;margin:0 auto;text-align:left;
   }
-  .hero-title{font-size:1.35rem;font-weight:700;line-height:1.15;margin-bottom:.35rem}
-  .hero-sub{font-size:0.95rem;opacity:0.95;max-width:58ch;color:rgba(255,255,255,0.95)}
+  .hero-title{
+    font-size:1.35rem;
+    font-weight:700;
+    line-height:1.15;
+    margin-bottom:.35rem;
+    font-family: "Tektur", sans-serif;
+  }
+  .hero-sub{
+    font-size:0.95rem;
+    opacity:0.95;
+    max-width:58ch;
+    color:rgba(255,255,255,0.95);
+    font-family: "Tektur", sans-serif;
+    font-weight: 500;
+  }
 
   /* floating shapes */
   .float-shape{position:absolute;border-radius:50%;opacity:0.12;filter:blur(6px);pointer-events:none}
@@ -83,16 +99,49 @@
   /* nav */
   nav{position:sticky;top:0;background:transparent;z-index:30;padding:.5rem 1rem;display:flex;justify-content:center;}
   .nav-inner{max-width:900px;width:100%;display:flex;gap:.5rem;justify-content:center;backdrop-filter:blur(6px)}
-  .nav-pill{background:rgba(255,255,255,0.9);border-radius:999px;padding:.45rem .9rem;display:flex;gap:.55rem;align-items:center;box-shadow:var(--shadow)}
-  .nav-pill a{font-weight:600;color:var(--secondary);text-decoration:none;font-size:.95rem}
+  .nav-pill{
+    background:rgba(255,255,255,0.9);
+    border-radius:999px;
+    padding:.45rem .9rem;
+    display:flex;
+    gap:.55rem;
+    align-items:center;
+    box-shadow:var(--shadow);
+    font-family: "Tektur", sans-serif;
+  }
+  .nav-pill a{
+    font-weight:600;
+    color:var(--secondary);
+    text-decoration:none;
+    font-size:.95rem;
+    font-family: "Tektur", sans-serif;
+  }
   .nav-pill a:hover{color:var(--primary)}
 
-  .container{max-width:900px;margin:0 auto;padding:1rem;width: 100%;box-sizing: border-box;overflow: hidden;}
-  .section{padding:1.25rem 0 1.5rem; position:relative}
+  .container{max-width:100%;margin:0 auto;padding:1rem;width: 100%;box-sizing: border-box;overflow: clip;}
+  .section{padding:1.25rem 0 1.5rem; position:relative;overflow-x:clip}
 
-  .section-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
-  .section-head h2{font-size:1.05rem;margin:0;color:var(--secondary);font-weight:700}
-  .section-sub{font-size:.9rem;color:var(--muted);margin-top:.25rem}
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    margin-bottom:.9rem;
+    font-family: "Tektur", sans-serif;
+  }
+  .section-head h2{
+    font-size:1.05rem;
+    margin:0;
+    color:var(--secondary);
+    font-weight:700;
+    font-family: "Tektur", sans-serif;
+  }
+  .section-sub{
+    font-size:.9rem;
+    color:var(--muted);
+    margin-top:.25rem;
+    font-family: "Tektur", sans-serif;
+    font-weight: 500;
+  }
 
   /* ---------- Enhanced masonry "stones" ---------- */
  .masonry{
@@ -103,6 +152,7 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  overflow-x: clip;
 }
 
 
@@ -140,8 +190,9 @@
     -webkit-tap-highlight-color: transparent;
     overflow:visible;
     border: 1px solid rgba(255,255,255,0.25);
-    background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.04));
+    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.15));
     color:#111;
+    font-family: "Tektur", sans-serif;
   }
   .stone:active{transform:translateY(2px)}
   .stone:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,12,12,0.12)}
@@ -152,8 +203,8 @@
     content:"";
     position:absolute;inset:0;border-radius:inherit;
     background-image:
-      radial-gradient(circle at 10% 10%, rgba(255,255,255,0.06), transparent 18%),
-      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+      radial-gradient(circle at 10% 10%, rgba(255,255,255,0.1), transparent 18%),
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.02));
     mix-blend-mode: overlay;
     pointer-events:none;
     z-index:0;
@@ -166,19 +217,62 @@
 
   /* top label band (small inset) */
   .stone .label{
-    display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:.86rem;margin-bottom:6px;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    font-weight:700;
+    font-size:.86rem;
+    margin-bottom:6px;
     z-index:2;
+    color:#000;
+    font-family: "Tektur", sans-serif;
   }
-  .emoji{font-size:1.05rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12))}
+  .emoji{
+    font-size:1.05rem;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+    font-family: system-ui, sans-serif; /* Keep emoji in system font */
+  }
 
-  .title{font-size:.95rem;font-weight:700;margin:0;line-height:1.14}
-  .meta{font-size:.78rem;color:#4f4f4f;margin-bottom:6px}
+  /* Enhanced text visibility with Tektur font */
+  .title{
+    font-size:.95rem;
+    font-weight:700;
+    margin:0;
+    line-height:1.14; 
+    color:#000;
+    font-family: "Tektur", sans-serif;
+  }
 
-  /* Enhanced stone color variations with more vibrant colors */
-  .stone.earth{ background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(254,202,87,0.15)); }
-  .stone.air  { background: linear-gradient(135deg, rgba(72,219,251,0.2), rgba(29,209,161,0.15)); }
-  .stone.fire { background: linear-gradient(135deg, rgba(255,159,243,0.2), rgba(165,94,234,0.15)); }
-  .stone.water{ background: linear-gradient(135deg, rgba(29,209,161,0.2), rgba(72,219,251,0.15)); }
+  .meta{
+    font-size:.78rem;
+    color:#222;
+    margin-bottom:6px; 
+    font-weight:600;
+    opacity: 0.9;
+    font-family: "Tektur", sans-serif;
+  }
+
+  .desc{
+    font-size:.8rem;
+    color:#444;
+    line-height:1.3;
+    font-family: "Tektur", sans-serif;
+    font-weight: 500;
+  }
+
+  /* Enhanced stone color variations with better contrast */
+  .stone.earth{ 
+    background: linear-gradient(135deg, rgba(255,107,107,0.4), rgba(254,202,87,0.3)); 
+  }
+  .stone.air  { 
+    background: linear-gradient(135deg, rgba(72,219,251,0.4), rgba(29,209,161,0.3)); 
+  }
+  .stone.fire { 
+    background: linear-gradient(135deg, rgba(255,159,243,0.4), rgba(165,94,234,0.3)); 
+  }
+  .stone.water{ 
+    background: linear-gradient(135deg, rgba(29,209,161,0.4), rgba(72,219,251,0.3)); 
+  }
 
   /* soft shine animation element */
   .shine{
@@ -213,23 +307,33 @@
     border: 1px solid rgba(255,255,255,0.6);
     box-shadow: 0 18px 40px rgba(12,12,12,0.12), 0 0 0 3px rgba(255,107,107,0.2);
   }
-  
-  /* responsive */
-  @media(min-width:480px){
-    .masonry{grid-template-columns: repeat(6, 1fr); gap:12px; grid-auto-rows:8px}
-    header{padding:3.8rem 1.25rem 3rem}
-    .hero-title{font-size:1.5rem}
-  }
-  @media(min-width:820px){
-    .masonry{grid-template-columns: repeat(12, 1fr); grid-auto-rows:8px; gap:14px}
-    .g-s3{grid-column: span 8}
-    .g-s4{grid-column: span 6}
+
+  /* Special styling for video section stones */
+  .video-section-stone .title {
+    color: #fff !important;
+    font-weight: 700;
+    font-family: "Tektur", sans-serif;
   }
 
-  /* small accessibility */
-  .stone:focus{outline:3px solid rgba(38,166,154,0.12)}
+  .video-section-stone .meta {
+    color: rgba(255,255,255,0.95) !important;
+    font-weight: 600;
+    font-family: "Tektur", sans-serif;
+  }
+
+  .video-section-stone .desc {
+    color: rgba(255,255,255,0.9) !important;
+    font-family: "Tektur", sans-serif;
+    font-weight: 500;
+  }
+
+  .video-section-stone .label {
+    color: rgba(255,255,255,0.95) !important;
+    font-weight: 700;
+    font-family: "Tektur", sans-serif;
+  }
   
-  /* Colorful footer */
+  /* Footer with Tektur font */
   footer {
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
     color:#fff;
@@ -240,6 +344,7 @@
     text-align:center;
     position: relative;
     overflow: hidden;
+    font-family: "Tektur", sans-serif;
   }
   
   footer::before {
@@ -259,6 +364,23 @@
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
   }
+
+  /* responsive */
+  @media(min-width:480px){
+    .stone { transform: none !important; border-radius:  30% /45% !important;
+    .masonry{grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap:8px; grid-auto-rows:8px}
+    header{padding:3.8rem 1.25rem 3rem}
+    .hero-title{font-size:1.5rem}
+    body {padding-right: 0;}
+  }
+  @media(min-width:820px){
+    .masonry{grid-template-columns: repeat(12, 1fr); grid-auto-rows:8px; gap:14px}
+    .g-s3{grid-column: span 8}
+    .g-s4{grid-column: span 6}
+  }
+
+  /* small accessibility */
+  .stone:focus{outline:3px solid rgba(38,166,154,0.12)}
 </style>
 </head>
 <body>
@@ -328,20 +450,16 @@
       Your browser does not support the video tag.
     </video>
 
-    <!-- Video overlay -->
+    <!-- Dark overlay to neutralize video -->
     <div style="
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-        135deg, 
-        rgba(42, 157, 143, 0.5),  
-        rgba(72, 219, 251, 0.4)   
-      z-index: 2;
-      border-radius: 16px;
-      mix-blend-mode: soft-light;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1;
+      border-radius: 20px;
     "></div>
     
     <!-- Your masonry grid -->
@@ -362,21 +480,22 @@
   </section>
 
   <div style="margin:1.25rem 0;padding:1rem;background:linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));border-radius:14px;box-shadow:var(--shadow); border-left: 4px solid var(--primary)">
-    <h3 style="margin:0;color:var(--secondary)">Reflect & Rebalance</h3>
-    <p style="margin:.6rem 0 0;color:#444">What begins with water returns to it — every material we use enters the same cycle. Small conscious choices ripple outward.</p>
+    <h3 style="margin:0;color:var(--secondary); font-family: 'Tektur', sans-serif;">Reflect & Rebalance</h3>
+    <p style="margin:.6rem 0 0;color:#444; font-family: 'Tektur', sans-serif; font-weight: 500;">What begins with water returns to it — every material we use enters the same cycle. Small conscious choices ripple outward.</p>
   </div>
 
 </main>
 
 <footer>
   <div style="max-width:900px;margin:0 auto;padding:.6rem 1rem; position: relative; z-index: 2;">
-    <div style="font-weight:700;margin-bottom:.45rem">The Everyday Materials Centre</div>
-    <div style="font-size:.95rem;opacity:.98">Part of The Proximity Project — Bringing public problems closer by creating places where people can see, touch and talk about them.</div>
-    <div style="margin-top:.6rem;font-size:.95rem">Contact: <a href="mailto:explore@socratus.org" style="color:#fff;text-decoration:underline">explore@socratus.org</a></div>
+    <div style="font-weight:700;margin-bottom:.45rem; font-family: 'Tektur', sans-serif;">The Everyday Materials Centre</div>
+    <div style="font-size:.95rem;opacity:.98; font-family: 'Tektur', sans-serif; font-weight: 500;">Part of The Proximity Project — Bringing public problems closer by creating places where people can see, touch and talk about them.</div>
+    <div style="margin-top:.6rem;font-size:.95rem; font-family: 'Tektur', sans-serif; font-weight: 500;">Contact: <a href="mailto:explore@socratus.org" style="color:#fff;text-decoration:underline">explore@socratus.org</a></div>
   </div>
 </footer>
 
 <script>
+
 /* ========== Data (unchanged) ========== */
 const textileData = {
   books: [
@@ -444,9 +563,14 @@ function mk(tag, txt, cls){
 
 /* build a stone tile */
 function buildStone(item, categoryKey, idx){
-  const stone = mk('article','', 'stone '+categoryMeta[categoryKey].cls);
+  const stone = mk('article','', 'stone '+(categoryMeta[categoryKey] ? categoryMeta[categoryKey].cls : 'stone'));
   const sizeClass = sizePattern[idx % sizePattern.length] || 'g-s2';
   stone.classList.add(sizeClass);
+
+  // Add special class for video section stones
+  if (categoryKey === 'mov') {
+    stone.classList.add('video-section-stone');
+  }
 
   // unique organic border-radius and rotation (deterministic by idx)
   const r = radiusPatterns[idx % radiusPatterns.length];
@@ -457,18 +581,26 @@ function buildStone(item, categoryKey, idx){
   // inner surface
   const surface = mk('div','', 'surface');
   const label = mk('div','', 'label');
-  const emoji = mk('div', categoryMeta[categoryKey].emoji, 'emoji');
-  const short = mk('div', categoryMeta[categoryKey].short, 'cat-short');
+  const emoji = mk('div', (categoryMeta[categoryKey] ? categoryMeta[categoryKey].emoji : ''), 'emoji');
+  const short = mk('div', (categoryMeta[categoryKey] ? categoryMeta[categoryKey].short : ''), 'cat-short');
   label.appendChild(emoji);
   label.appendChild(short);
 
-  const meta = mk('div', item.creator ? `By ${item.creator}` : '', 'meta');
+  // meta (creator) - Clean and natural styling
+  const meta = mk('div', item.creator ? `${item.creator}` : '', 'meta');
+  if (item.creatorColor) {
+    meta.style.color = item.creatorColor;
+    meta.style.fontWeight = 600;
+  }
+
+  // title & desc
   const title = mk('h3', item.title, 'title');
-  const desc = mk('p', item.description, 'desc');
+  const desc = mk('p', item.description || '', 'desc');
 
   // decorative shine element
   const shine = mk('div','', 'shine');
 
+  // assemble
   surface.appendChild(label);
   surface.appendChild(meta);
   surface.appendChild(title);
@@ -482,8 +614,6 @@ function buildStone(item, categoryKey, idx){
     stone.style.transform += ' translateY(-4px)';
     setTimeout(()=> {
       // remove the translateY while preserving rotation
-      const currentTransform = stone.style.transform || '';
-      // keep rotation piece only
       stone.style.transform = `rotate(${rot}deg)`;
     },120);
     showTransientTip(stone, 'Tap again to open details (future).');
@@ -518,6 +648,7 @@ function showTransientTip(anchor, text){
 /* populate grid */
 function populateGrid(gridId, arr, categoryKey){
   const grid = document.getElementById(gridId);
+  if(!grid) return;
   arr.forEach((item, i)=>{
     const stone = buildStone(item, categoryKey, i);
     grid.appendChild(stone);
@@ -527,7 +658,7 @@ function populateGrid(gridId, arr, categoryKey){
 /* initialize */
 document.addEventListener('DOMContentLoaded', ()=>{
   populateGrid('books-grid', textileData.books, 'books');
-  populateGrid('mov-grid', textileData.mov, 'mov');
+  populateGrid('mov-grid-content', textileData.mov, 'mov'); // your mov grid uses mov-grid-content id in markup
   populateGrid('figs-grid', textileData.iconicFigures, 'iconic-figures');
   populateGrid('events-grid', textileData.events, 'events');
 
@@ -545,5 +676,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }, {passive:true});
 });
 </script>
+
 </body>
 </html>
