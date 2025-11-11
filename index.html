@@ -365,6 +365,31 @@
     100% { background-position: 200% 0; }
   }
 
+  /* Download confirmation styles */
+  .download-confirmation {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--secondary);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: 'Tektur', sans-serif;
+    font-weight: 600;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+
   /* responsive */
   @media(min-width:480px){
     .stone { transform: none !important; border-radius:  30% /45% !important;
@@ -496,16 +521,59 @@
 
 <script>
 
-/* ========== Data (unchanged) ========== */
+/* ========== Data with download links ========== */
 const textileData = {
   books: [
-    { title: "Zero Waste Home", creator: "Bea Johnson", description: "Children's/educational" },
-    { title: "The Sustainable Living Guide", creator: "Jen Gale", description: "Environmental reports" },
-    { title: "Sustainable Home", creator: "Christine Liu", description: "Literary/academic" },
-    { title: "Dirt to Soil", creator: "Gabe Brown", description: "Essays on rivers" },
-    { title: "Slowly Down the Ganges", creator: "Eric Newby", description: "Travel writing" },
-    { title: "Restoration Agriculture", creator: "Mark Shepard", description: "History of Indus" },
-    { title: "Wilding", creator: "Isabella Tree", description: "Environmental history of Brahmaputra" }
+    { 
+      title: "Zero Waste Home", 
+      creator: "Bea Johnson", 
+      description: "Children's/educational", 
+      creatorColor: "#87BAC3",
+      downloadUrl: "Assests/Zero Waste Home (Bea Johnson).pdf",
+      fileName: "Zero Waste Home (Bea Johnson).pdf"
+    },
+    { 
+      title: "The Sustainable Living Guide", 
+      creator: "Jen Gale", 
+      description: "Environmental reports",
+      downloadUrl: "Assests/The Sustainable Living Guide.epub",
+      fileName: "The Sustainable Living Guide.epub"
+    },
+    { 
+      title: "Sustainable Home", 
+      creator: "Christine Liu", 
+      description: "Literary/academic",
+      downloadUrl: "Assests/Sustainable Home  Practical.epub",
+      fileName: "Sustainable Home  Practical.epub"
+    },
+    { 
+      title: "Dirt to Soil", 
+      creator: "Gabe Brown", 
+      description: "Essays on rivers",
+      downloadUrl: "Assests/Dirt to Soil One Family’s J.epub",
+      fileName: "Dirt to Soil One Family’s J.epub"
+    },
+    { 
+      title: "Slowly Down the Ganges", 
+      creator: "Eric Newby", 
+      description: "Travel writing",
+      downloadUrl: "./downloads/slowly-down-ganges.pdf",
+      fileName: "Slowly-Down-Ganges-Eric-Newby.pdf"
+    },
+    { 
+      title: "Restoration Agriculture", 
+      creator: "Mark Shepard", 
+      description: "History of Indus",
+      downloadUrl: "./downloads/restoration-agriculture.pdf",
+      fileName: "Restoration-Agriculture-Mark-Shepard.pdf"
+    },
+    { 
+      title: "Wilding", 
+      creator: "Isabella Tree", 
+      description: "Environmental history of Brahmaputra",
+      downloadUrl: "./downloads/wilding.pdf",
+      fileName: "Wilding-Isabella-Tree.pdf"
+    }
   ],
   mov: [
     { title: "No Imapct Man     ", creator: "Laura Gambert Rated 6.6", description: "Documentary on family living with sustainable practises" },
@@ -534,10 +602,10 @@ const sizePattern = ['g-s4','g-s2','g-s6','g-s1','g-s5','g-s3','g-s2','g-s6'];
 
 /* category meta */
 const categoryMeta = {
-  books: { cls: 'earth', emoji:'📚', short:'Books' },
-  mov: { cls: 'air', emoji:'🎵', short:'mov' },
-  'iconic-figures': { cls: 'fire', emoji:'👤', short:'Figures' },
-  events: { cls: 'water', emoji:'📅', short:'Events' }
+  books: { cls: 'earth', emoji:'', short:'Books' },
+  mov: { cls: 'air', emoji:'', short:'mov' },
+  'iconic-figures': { cls: 'fire', emoji:'', short:'Figures' },
+  events: { cls: 'water', emoji:'', short:'Events' }
 };
 
 /* deterministic irregular radii & rotation patterns for natural look */
@@ -561,6 +629,47 @@ function mk(tag, txt, cls){
   return el;
 }
 
+/* Download function */
+function downloadFile(url, filename) {
+  // Create a temporary anchor element
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  
+  // Show download confirmation
+  showDownloadConfirmation(filename);
+}
+
+/* Show download confirmation */
+function showDownloadConfirmation(filename) {
+  // Remove any existing confirmation
+  const existingConfirmation = document.querySelector('.download-confirmation');
+  if (existingConfirmation) {
+    existingConfirmation.remove();
+  }
+  
+  // Create confirmation element
+  const confirmation = document.createElement('div');
+  confirmation.className = 'download-confirmation';
+  confirmation.textContent = `Downloading: ${filename}`;
+  confirmation.style.animation = 'slideIn 0.3s ease';
+  
+  document.body.appendChild(confirmation);
+  
+  // Remove confirmation after 3 seconds
+  setTimeout(() => {
+    confirmation.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => {
+      if (confirmation.parentNode) {
+        confirmation.parentNode.removeChild(confirmation);
+      }
+    }, 300);
+  }, 3000);
+}
+
 /* build a stone tile */
 function buildStone(item, categoryKey, idx){
   const stone = mk('article','', 'stone '+(categoryMeta[categoryKey] ? categoryMeta[categoryKey].cls : 'stone'));
@@ -578,6 +687,12 @@ function buildStone(item, categoryKey, idx){
   stone.style.borderRadius = r;
   stone.style.transform = `rotate(${rot}deg)`;
 
+  // Add download cursor and title for books
+  if (categoryKey === 'books') {
+    stone.style.cursor = 'pointer';
+    stone.title = 'Click to download';
+  }
+
   // inner surface
   const surface = mk('div','', 'surface');
   const label = mk('div','', 'label');
@@ -586,7 +701,7 @@ function buildStone(item, categoryKey, idx){
   label.appendChild(emoji);
   label.appendChild(short);
 
-  // meta (creator) - Clean and natural styling
+  // meta (creator)
   const meta = mk('div', item.creator ? `${item.creator}` : '', 'meta');
   if (item.creatorColor) {
     meta.style.color = item.creatorColor;
@@ -608,15 +723,30 @@ function buildStone(item, categoryKey, idx){
   stone.appendChild(shine);
   stone.appendChild(surface);
 
-  // subtle interaction: small pulse + hint
+  // Click handler - Different behavior for books (download) vs others (existing behavior)
   stone.addEventListener('click', ()=>{
-    stone.style.transition='transform .12s ease';
-    stone.style.transform += ' translateY(-4px)';
-    setTimeout(()=> {
-      // remove the translateY while preserving rotation
-      stone.style.transform = `rotate(${rot}deg)`;
-    },120);
-    showTransientTip(stone, 'Tap again to open details (future).');
+    if (categoryKey === 'books' && item.downloadUrl) {
+      // Download functionality for books
+      stone.style.transition = 'transform .12s ease, background-color .3s ease';
+      stone.style.backgroundColor = 'rgba(93, 187, 170, 0.3)'; // Highlight color
+      
+      // Trigger download
+      downloadFile(item.downloadUrl, item.fileName);
+      
+      // Reset background color after a delay
+      setTimeout(() => {
+        stone.style.backgroundColor = '';
+      }, 1000);
+      
+    } else {
+      // Existing behavior for other sections
+      stone.style.transition='transform .12s ease';
+      stone.style.transform += ' translateY(-4px)';
+      setTimeout(()=> {
+        stone.style.transform = `rotate(${rot}deg)`;
+      },120);
+      showTransientTip(stone, 'Tap again to open details (future).');
+    }
   });
 
   return stone;
@@ -658,7 +788,7 @@ function populateGrid(gridId, arr, categoryKey){
 /* initialize */
 document.addEventListener('DOMContentLoaded', ()=>{
   populateGrid('books-grid', textileData.books, 'books');
-  populateGrid('mov-grid-content', textileData.mov, 'mov'); // your mov grid uses mov-grid-content id in markup
+  populateGrid('mov-grid-content', textileData.mov, 'mov');
   populateGrid('figs-grid', textileData.iconicFigures, 'iconic-figures');
   populateGrid('events-grid', textileData.events, 'events');
 
