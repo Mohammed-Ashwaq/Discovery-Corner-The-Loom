@@ -3,454 +3,306 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Everyday s Exhibit</title>
+<title>Everyday Exhibit</title>
 <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  /* ---------- Enhanced Color Palette ---------- */
   :root{
-   --primary:#F4B942;   /* golden yellow */
-    --secondary:#5DBBAA; /* teal */
-    --accent:#48C9D4;    /* cyan */
-    --purple:#E8857A;    /* coral/salmon */
-    --yellow:#F4B942;    /* golden yellow */
-    --green:#5DBBAA;     /* teal */
-    --orange:#A84E5E;    /* burgundy/wine */
-    --bg:#fbfaf8;
-    --card-surface: rgba(255,255,255,0.92);
-    --muted:#5b5b5b;
-    --shadow: 0 12px 30px rgba(18,18,18,0.08);
-    --text-dark: #1a1a1a;
-    --text-light: #ffffff;
+    --primary:#F4B942;   --secondary:#5DBBAA;   --accent:#48C9D4;   --purple:#E8857A;
+    --yellow:#F4B942;    --green:#5DBBAA;       --orange:#A84E5E;   --bg:#fbfaf8;
+    --card-surface: rgba(255,255,255,0.92);     --muted:#5b5b5b;    --shadow: 0 12px 30px rgba(18,18,18,0.08);
+    --text-dark: #1a1a1a;    --text-light: #ffffff;
   }
 
-  *{box-sizing:border-box}
-  html,body{height:100%}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%; overflow-x: hidden;}
   body{
     margin:0;
-    font-family: "Tektur", "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    font-family: "Tektur", sans-serif;
     background:var(--bg);
     background: 
     url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="black"/><circle cx="80" cy="40" r="1" fill="black"/><circle cx="40" cy="80" r="1" fill="black"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>'),
     linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     color:var(--text-dark);
-    -webkit-font-smoothing:antialiased;
-    -webkit-text-size-adjust:100%;
     overflow-x:hidden !important;
   }
 
-  a{color:inherit}
-
-  /* ---------- Enhanced HERO ---------- */
+  /* Header */
   header{
     position:relative;
-    padding:3.2rem 1.25rem 2.4rem;
+    padding:2rem 1rem 1.5rem;
     color:var(--text-light);
-    border-bottom-left-radius:28px;
-    border-bottom-right-radius:28px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
     box-shadow: var(--shadow);
-    overflow:visible;
+    overflow:hidden;
     background: linear-gradient(-45deg, var(--primary), var(--secondary), var(--accent), var(--purple), var(--yellow), var(--green));
     background-size:400% 400%;
     animation: gradientShift 15s ease infinite;
   }
-  @keyframes gradientShift{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-  header .wrap{
-    max-width:900px;margin:0 auto;text-align:left;
-  }
-  .hero-title{
-    font-size:1.35rem;
-    font-weight:700;
-    line-height:1.15;
-    margin-bottom:.35rem;
-    font-family: "Tektur", sans-serif;
-  }
-  .hero-sub{
-    font-size:0.95rem;
-    opacity:0.95;
-    max-width:58ch;
-    color:rgba(255,255,255,0.95);
-    font-family: "Tektur", sans-serif;
-    font-weight: 500;
-  }
-
-  /* floating shapes */
+  @keyframes gradientShift{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  
   .float-shape{position:absolute;border-radius:50%;opacity:0.12;filter:blur(6px);pointer-events:none}
-  .fs-1{width:110px;height:110px;left:8%;top:6%;background:#fff}
-  .fs-2{width:72px;height:72px;right:12%;top:24%;background:#000}
-  .fs-3{width:140px;height:140px;left:60%;bottom:12%;background:#fff}
-  header:hover{filter:brightness(1.05)}
+  .fs-1{width:80px;height:80px;left:5%;top:10%;background:#fff}
+  .fs-2{width:50px;height:50px;right:8%;top:30%;background:#000}
+  .fs-3{width:100px;height:100px;left:60%;bottom:15%;background:#fff}
 
-  /* woven overlay */
-  .woven{
-    position:absolute;inset:0;
-    background-image:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 6px);
-    pointer-events:none;
-    transition:opacity .45s ease;
-    opacity:1;
-  }
-  header:hover .woven{opacity:0.14}
+  .hero-title{ font-size:1.1rem; font-weight:700; line-height:1.2; margin-bottom:.5rem; text-align: center; }
+  .hero-sub{ font-size:0.85rem; opacity:0.95; max-width:100%; color:rgba(255,255,255,0.95); font-weight: 500; text-align: center; padding: 0 0.5rem; }
 
-  /* nav */
-  nav{position:sticky;top:0;background:transparent;z-index:30;padding:.5rem 1rem;display:flex;justify-content:center;}
-  .nav-inner{max-width:900px;width:100%;display:flex;gap:.5rem;justify-content:center;backdrop-filter:blur(6px)}
-  .nav-pill{
-    background:rgba(255,255,255,0.9);
-    border-radius:999px;
-    padding:.45rem .9rem;
-    display:flex;
-    gap:.55rem;
-    align-items:center;
-    box-shadow:var(--shadow);
-    font-family: "Tektur", sans-serif;
-  }
-  .nav-pill a{
-    font-weight:600;
-    color:var(--secondary);
-    text-decoration:none;
-    font-size:.95rem;
-    font-family: "Tektur", sans-serif;
-  }
+  /* Navigation */
+  nav{position:sticky;top:0;background:transparent;z-index:30;padding:.5rem 0.5rem;display:flex;justify-content:center;}
+  .nav-inner{max-width:100%;width:100%;display:flex;gap:.3rem;justify-content:center;backdrop-filter:blur(6px); flex-wrap: wrap;}
+  .nav-pill{ background:rgba(255,255,255,0.9); border-radius:999px; padding:.4rem .8rem; display:flex; gap:.4rem; align-items:center; box-shadow:var(--shadow); flex-wrap: wrap; justify-content: center; }
+  .nav-pill a{ font-weight:600; color:var(--secondary); text-decoration:none; font-size:.85rem; white-space: nowrap; }
   .nav-pill a:hover{color:var(--primary)}
 
-  .container{max-width:100%;margin:0 auto;padding:1rem;width: 100%;box-sizing: border-box;overflow: clip;}
-  .section{padding:1.25rem 0 1.5rem; position:relative;overflow-x:clip}
+  .container{max-width:100%;margin:0 auto;padding:0.75rem;width: 100%;box-sizing: border-box;overflow: hidden;}
+  .section{padding:1rem 0 1.25rem; position:relative;overflow:hidden}
 
-  .section-head{
-    display:flex;
-    align-items:center;
-    gap:.6rem;
-    margin-bottom:.9rem;
-    font-family: "Tektur", sans-serif;
-  }
-  .section-head h2{
-    font-size:1.05rem;
-    margin:0;
-    color:var(--secondary);
-    font-weight:700;
-    font-family: "Tektur", sans-serif;
-  }
-  .section-sub{
-    font-size:.9rem;
-    color:var(--muted);
-    margin-top:.25rem;
-    font-family: "Tektur", sans-serif;
-    font-weight: 500;
-  }
+  .section-head{ display:flex; align-items:center; gap:.5rem; margin-bottom:.8rem; padding: 0 0.5rem; }
+  .section-head h2{ font-size:0.95rem; margin:0; color:var(--secondary); font-weight:700; }
 
-  /* ---------- Enhanced masonry "stones" ---------- */
- .masonry{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap:10px;
-  align-items:start;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: clip;
-  touch-action: pan-y; /* FIX: Ensures vertical scrolling works */
-}
-
-
-  /*--------Grid section----------"books"----------*/
-  #books-grid{
-    background: linear-gradient(rgba(148, 134, 134, 0.9), rgba(68, 39, 39, 0.95)), url('./images/bookSectionBg.png');
-    background-size: cover;
-    background-position: center;
-    padding: 2rem;
-    border-radius: 20px;
-    margin: 2rem 0;
+  /* Central Display with Bubbles - ALL SECTIONS */
+  .central-display {
     position: relative;
-  }
-  /*--------Grid section----------"movies"----------*/
-   #mov-grid{
-    background:url('./images/665769e9-37f5-4110-92e1-9181595080fb.mp4');
-    background-size: cover;
-    background-position: center;
-    padding: 2rem;
-    border-radius: 20px;
-    margin: 2rem 0;
-    position: relative;
+    min-height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding: 0 0.5rem;
+    overflow: hidden;
   }
 
-  /* Stone tile base: make them feel like rounded pebbles */
+  .central-stone {
+    position: absolute;
+    width: 220px;
+    height: 280px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    border-radius: 40% 60% 70% 30% / 50% 50% 50% 50%;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8), 0 0 0 4px rgba(255,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 10;
+    transition: all 0.4s ease;
+    border: 2px solid rgba(255,255,255,0.5);
+    text-align: center;
+  }
+
+  .central-stone:hover { transform: scale(1.03) rotate(1deg); }
+
+  .central-icon { font-size: 2.2rem; margin-bottom: 0.8rem; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15)); }
+  .central-title { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.6rem; line-height: 1.2; }
+  .central-creator { font-size: 0.9rem; color: var(--secondary); font-weight: 600; margin-bottom: 0.8rem; }
+  .central-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.4; font-weight: 500; }
+
+  /* Orbiting Bubbles - MOBILE FIRST */
+  .bubble-orbit { 
+    position: absolute; 
+    border-radius: 50%; 
+    animation: rotate 25s linear infinite;
+    transform-origin: center;
+  }
+  
+  .bubble-orbit-1 { width: 280px; height: 280px; animation-duration: 30s; }
+  .bubble-orbit-2 { width: 340px; height: 340px; animation-duration: 40s; animation-direction: reverse; }
+  .bubble-orbit-3 { width: 400px; height: 400px; animation-duration: 50s; }
+
+  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.4);
+    transition: all 0.3s ease;
+    border: 1.5px solid rgba(255,255,255,0.3);
+  }
+
+  .bubble.small { width: 30px; height: 30px; }
+  .bubble.medium { width: 45px; height: 45px; }
+  .bubble.large { width: 55px; height: 55px; }
+
+  .bubble-color-1 { background: linear-gradient(135deg, rgba(72,219,251,0.6), rgba(29,209,161,0.5)); }
+  .bubble-color-2 { background: linear-gradient(135deg, rgba(255,159,243,0.6), rgba(165,94,234,0.5)); }
+  .bubble-color-3 { background: linear-gradient(135deg, rgba(255,107,107,0.6), rgba(254,202,87,0.5)); }
+  .bubble-color-4 { background: linear-gradient(135deg, rgba(29,209,161,0.6), rgba(72,219,251,0.5)); }
+
+  /* Position bubbles for mobile */
+  .bubble-orbit-1 .bubble:nth-child(1) { top: -15px; left: 50%; transform: translateX(-50%); }
+  .bubble-orbit-1 .bubble:nth-child(2) { top: 50%; right: -15px; transform: translateY(-50%); }
+  .bubble-orbit-1 .bubble:nth-child(3) { bottom: -15px; left: 50%; transform: translateX(-50%); }
+  .bubble-orbit-1 .bubble:nth-child(4) { top: 50%; left: -15px; transform: translateY(-50%); }
+
+  .bubble-orbit-2 .bubble:nth-child(1) { top: -20px; left: 20%; }
+  .bubble-orbit-2 .bubble:nth-child(2) { top: -20px; right: 20%; }
+  .bubble-orbit-2 .bubble:nth-child(3) { bottom: -20px; left: 20%; }
+  .bubble-orbit-2 .bubble:nth-child(4) { bottom: -20px; right: 20%; }
+
+  .bubble-orbit-3 .bubble:nth-child(1) { top: 15%; left: -25px; }
+  .bubble-orbit-3 .bubble:nth-child(2) { top: 15%; right: -25px; }
+  .bubble-orbit-3 .bubble:nth-child(3) { bottom: 15%; left: -25px; }
+  .bubble-orbit-3 .bubble:nth-child(4) { bottom: 15%; right: -25px; }
+
+  .bubble:hover { transform: scale(1.2); z-index: 5; }
+  .bubble.pulse { animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+  .bubble.float { animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+
+  /* Section Colors */
+  .books-central .central-stone { background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(254,202,87,0.1), rgba(255,255,255,0.95)); border: 2px solid rgba(255,107,107,0.3); }
+  .movies-central .central-stone { background: linear-gradient(135deg, rgba(72,219,251,0.15), rgba(29,209,161,0.1), rgba(255,255,255,0.95)); border: 2px solid rgba(72,219,251,0.3); }
+  .figures-central .central-stone { background: linear-gradient(135deg, rgba(255,159,243,0.15), rgba(165,94,234,0.1), rgba(255,255,255,0.95)); border: 2px solid rgba(255,159,243,0.3); }
+  .events-central .central-stone { background: linear-gradient(135deg, rgba(29,209,161,0.15), rgba(72,219,251,0.1), rgba(255,255,255,0.95)); border: 2px solid rgba(29,209,161,0.3); }
+
+  /* Stone Masonry */
+  .masonry{ 
+    display:grid; 
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    gap:8px; 
+    align-items:start; 
+    width: 100%; 
+    max-width: 100%; 
+    box-sizing: border-box;
+    padding: 0 0.5rem;
+  }
+
   .stone{
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    padding:12px;
-    min-height:56px;
-    border-radius:20px; /* base fallback */
-    box-shadow: 0 10px 22px rgba(12,12,12,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+    position:relative; 
+    display:flex; 
+    flex-direction:column; 
+    padding:10px; 
+    min-height:180px; 
+    border-radius:16px;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 8px 18px rgba(12,12,12,0.06), inset 0 1px 0 rgba(255,255,255,0.6); 
     transition: transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .26s;
-    -webkit-tap-highlight-color: transparent;
-    overflow:visible;
-    border: 1px solid rgba(255,255,255,0.25);
-    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.15));
+    border: 1px solid rgba(255,255,255,0.25); 
+    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.15)); 
     color:#111;
-    font-family: "Tektur", sans-serif;
   }
-  .stone:active{transform:translateY(2px)}
-  .stone:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,12,12,0.12)}
+  .stone:hover{transform:translateY(-4px);box-shadow:0 12px 25px rgba(12,12,12,0.1)}
 
-  /* irregular shape masks using multiple border-radius values applied inline via JS for uniqueness */
-  /* subtle grain / pebble texture via pseudo-element */
-  .stone::before{
-    content:"";
-    position:absolute;inset:0;border-radius:inherit;
-    background-image:
-      radial-gradient(circle at 10% 10%, rgba(255,255,255,0.1), transparent 18%),
-      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.02));
-    mix-blend-mode: overlay;
-    pointer-events:none;
-    z-index:0;
-  }
+  .stone .surface{ position:relative;z-index:2;padding:5px; }
+  .title{ font-size:.85rem; font-weight:700; margin:0; line-height:1.2; color:#000; }
+  .meta{ font-size:.72rem; color:#222; margin-bottom:5px; font-weight:600; opacity: 0.9; }
+  .desc{ font-size:.75rem; color:#444; line-height:1.3; font-weight: 500; }
 
-  /* micro-noise via svg filter applied to stone inner surface (uses CSS filter) */
-  .stone .surface{
-    position:relative;z-index:2;padding:6px;
-  }
+  .stone.earth{ background: linear-gradient(135deg, rgba(255,107,107,0.4), rgba(254,202,87,0.3)); }
+  .stone.air{ background: linear-gradient(135deg, rgba(72,219,251,0.4), rgba(29,209,161,0.3)); }
+  .stone.fire{ background: linear-gradient(135deg, rgba(255,159,243,0.4), rgba(165,94,234,0.3)); }
+  .stone.water{ background: linear-gradient(135deg, rgba(29,209,161,0.4), rgba(72,219,251,0.3)); }
 
-  /* top label band (small inset) */
-  .stone .label{
-    display:flex;
-    align-items:center;
-    gap:.6rem;
-    font-weight:700;
-    font-size:.86rem;
-    margin-bottom:6px;
-    z-index:2;
-    color:#000;
-    font-family: "Tektur", sans-serif;
-  }
-  .emoji{
-    font-size:1.05rem;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
-    font-family: system-ui, sans-serif; /* Keep emoji in system font */
-  }
-
-  /* Enhanced text visibility with Tektur font */
-  .title{
-    font-size:.95rem;
-    font-weight:700;
-    margin:0;
-    line-height:1.14; 
-    color:#000;
-    font-family: "Tektur", sans-serif;
-  }
-
-  .meta{
-    font-size:.78rem;
-    color:#222;
-    margin-bottom:6px; 
-    font-weight:600;
-    opacity: 0.9;
-    font-family: "Tektur", sans-serif;
-  }
-
-  .desc{
-    font-size:.8rem;
-    color:#444;
-    line-height:1.3;
-    font-family: "Tektur", sans-serif;
-    font-weight: 500;
-  }
-
-  /* Simple link indicator for books and movies - no button styles */
-  .link-indicator{
-    font-size:0.75rem;
-    color:black;
-    font-weight:600;
-    margin-top:8px;
-    font-family: "Tektur", sans-serif;
-  }
-
-  /* Enhanced stone color variations with better contrast */
-  .stone.earth{ 
-    background: linear-gradient(135deg, rgba(255,107,107,0.4), rgba(254,202,87,0.3)); 
-  }
-  .stone.air  { 
-    background: linear-gradient(135deg, rgba(72,219,251,0.4), rgba(29,209,161,0.3)); 
-  }
-  .stone.fire { 
-    background: linear-gradient(135deg, rgba(255,159,243,0.4), rgba(165,94,234,0.3)); 
-  }
-  .stone.water{ 
-    background: linear-gradient(135deg, rgba(29,209,161,0.4), rgba(72,219,251,0.3)); 
-  }
-
- 
-
-  /* soft shine animation element */
-  .shine{
-    position:absolute;top:-40%;left:-30%;width:160%;height:180%;transform:rotate(25deg);
-    background: linear-gradient(90deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.14) 45%, rgba(255,255,255,0.0) 70%);
-    opacity:0;pointer-events:none;border-radius:50%;
-    transition:opacity .45s ease, transform .45s ease;
-    z-index:1;
-    mix-blend-mode: screen;
-  }
-  .stone:hover .shine{opacity:1;transform:translateX(6%);}
-
-  /* stone 'cut' cracks (decorative) using pseudo-element */
-  .stone::after{
-    content:"";
-    position:absolute;left:6%;bottom:6%;width:40%;height:14%;border-radius:50%;
-    background: radial-gradient(ellipse at 20% 40%, rgba(0,0,0,0.03), rgba(0,0,0,0) 70%);
-    transform:rotate(-6deg);
-    pointer-events:none;z-index:1;opacity:0.9;
-  }
-
-  /* variable 'stone' sizes (grid helpers) */
-  .g-s1{grid-column: span 2; grid-row: span 32;}
-  .g-s2{grid-column: span 1; grid-row: span 18;}
-  .g-s3{grid-column: span 2; grid-row: span 14;}
-  .g-s4{grid-column: span 2; grid-row: span 22;}
-  .g-s5{grid-column: span 1; grid-row: span 14;}
-  .g-s6{grid-column: span 1; grid-row: span 10;}
-  
-  /* colorful border effect on hover */
-  .stone:hover {
-    border: 1px solid rgba(255,255,255,0.6);
-    box-shadow: 0 18px 40px rgba(12,12,12,0.12), 0 0 0 3px rgba(255,107,107,0.2);
-  }
-
-  /* Special styling for video section stones */
-  .video-section-stone .title {
-    color: #fff !important;
-    font-weight: 700;
-    font-family: "Tektur", sans-serif;
-  }
-
-  .video-section-stone .meta {
-    color: rgba(255,255,255,0.95) !important;
-    font-weight: 600;
-    font-family: "Tektur", sans-serif;
-  }
-
-  .video-section-stone .desc {
-    color: rgba(255,255,255,0.9) !important;
-    font-family: "Tektur", sans-serif;
-    font-weight: 500;
-  }
-
-  .video-section-stone .label {
-    color: rgba(255,255,255,0.95) !important;
-    font-weight: 700;
-    font-family: "Tektur", sans-serif;
-  }
-
-  .video-section-stone .link-indicator {
-    color: rgba(255,255,255,0.9) !important;
-  }
-  
-  /* Footer with Tektur font */
+  /* Footer */
   footer {
     background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-    color:#fff;
-    padding:1rem;
-    border-top-left-radius:28px;
-    border-top-right-radius:28px;
-    margin-top:12px;
-    text-align:center;
-    position: relative;
+    color:#fff; 
+    padding:1rem 0.75rem; 
+    border-top-left-radius:20px; 
+    border-top-right-radius:20px; 
+    margin-top:10px; 
+    text-align:center; 
+    position: relative; 
     overflow: hidden;
-    font-family: "Tektur", sans-serif;
+  }
+
+  /* Desktop improvements */
+  @media (min-width: 768px) {
+    header{ padding:3.2rem 1.25rem 2.4rem; border-bottom-left-radius:28px; border-bottom-right-radius:28px; }
+    .hero-title{ font-size:1.35rem; text-align: left; }
+    .hero-sub{ font-size:0.95rem; text-align: left; max-width:58ch; }
+    
+    .nav-inner{ max-width:900px; gap:.5rem; }
+    .nav-pill{ padding:.45rem .9rem; gap:.55rem; }
+    .nav-pill a{ font-size:.95rem; }
+    
+    .container{ padding:1rem; }
+    .section{ padding:1.25rem 0 1.5rem; }
+    .section-head h2{ font-size:1.05rem; }
+    
+    .central-display { min-height: 400px; margin: 2rem 0; }
+    .central-stone { width: 280px; height: 350px; padding: 2rem; }
+    .central-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .central-title { font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .central-creator { font-size: 1rem; margin-bottom: 1rem; }
+    .central-desc { font-size: 0.9rem; }
+    
+    .bubble-orbit-1 { width: 450px; height: 450px; }
+    .bubble-orbit-2 { width: 550px; height: 550px; }
+    .bubble-orbit-3 { width: 650px; height: 650px; }
+    
+    .bubble.small { width: 40px; height: 40px; }
+    .bubble.medium { width: 60px; height: 60px; }
+    .bubble.large { width: 80px; height: 80px; }
+    
+    .bubble-orbit-1 .bubble:nth-child(1) { top: -20px; }
+    .bubble-orbit-1 .bubble:nth-child(2) { right: -20px; }
+    .bubble-orbit-1 .bubble:nth-child(3) { bottom: -20px; }
+    .bubble-orbit-1 .bubble:nth-child(4) { left: -20px; }
+    
+    .bubble-orbit-2 .bubble:nth-child(1) { top: -30px; left: 25%; }
+    .bubble-orbit-2 .bubble:nth-child(2) { top: -30px; right: 25%; }
+    .bubble-orbit-2 .bubble:nth-child(3) { bottom: -30px; left: 25%; }
+    .bubble-orbit-2 .bubble:nth-child(4) { bottom: -30px; right: 25%; }
+    
+    .bubble-orbit-3 .bubble:nth-child(1) { left: -40px; }
+    .bubble-orbit-3 .bubble:nth-child(2) { right: -40px; }
+    .bubble-orbit-3 .bubble:nth-child(3) { left: -40px; }
+    .bubble-orbit-3 .bubble:nth-child(4) { right: -40px; }
+    
+    .masonry{ gap:10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .stone{ padding:12px; min-height:56px; border-radius:20px; }
+    .stone:hover{ transform:translateY(-6px); }
+    .stone .surface{ padding:6px; }
+    .title{ font-size:.95rem; }
+    .meta{ font-size:.78rem; margin-bottom:6px; }
+    .desc{ font-size:.8rem; }
+    
+    footer{ padding:1rem; border-top-left-radius:28px; border-top-right-radius:28px; margin-top:12px; }
+  }
+
+  /* Small mobile devices */
+  @media (max-width: 360px) {
+    .central-display { min-height: 250px; }
+    .central-stone { width: 190px; height: 240px; padding: 1rem; }
+    .central-icon { font-size: 1.8rem; }
+    .central-title { font-size: 1rem; }
+    .central-creator { font-size: 0.8rem; }
+    .central-desc { font-size: 0.75rem; }
+    
+    .bubble-orbit-1 { width: 240px; height: 240px; }
+    .bubble-orbit-2 { width: 290px; height: 290px; }
+    .bubble-orbit-3 { width: 340px; height: 340px; }
+    
+    .masonry{ grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:6px; }
   }
   
-  footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
-    background-size: 200% 200%;
-    animation: shimmer 3s infinite;
-    pointer-events: none;
-  }
-  
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  /* Download confirmation styles */
-  .download-confirmation {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--secondary);
-    color: white;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-family: 'Tektur', sans-serif;
-    font-weight: 600;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-
-  @keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-
-  @keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
-  }
-
-  /* responsive */
-  @media(min-width:480px){
-    .stone { transform: none !important; border-radius:  30% /45% !important;
-    .masonry{grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap:8px; grid-auto-rows:8px}
-    header{padding:3.8rem 1.25rem 3rem}
-    .hero-title{font-size:1.5rem}
-    body {padding-right: 0;}
-  }
-  @media(min-width:820px){
-    .masonry{grid-template-columns: repeat(12, 1fr); grid-auto-rows:8px; gap:14px}
-    .g-s3{grid-column: span 8}
-    .g-s4{grid-column: span 6}
-  }
-
-  /* small accessibility */
-  .stone:focus{outline:3px solid rgba(38,166,154,0.12)}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <header>
   <div class="float-shape fs-1"></div>
   <div class="float-shape fs-2"></div>
   <div class="float-shape fs-3"></div>
-  <div class="woven"></div>
-
   <div class="wrap">
     <div>
       <div class="hero-title">The Everyday Materials Experience Centre</div>
-      <!-- <div class="hero-sub">A mobile-first immersive presentation. The content (books, mov, figures, events) is unchanged — the cards are now tactile stone-like tiles in an organic masonry arrangement.</div> -->
     </div>
   </div>
 </header>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-pill" role="navigation" aria-label="main navigation">
-      <a href="#books">Books</a>
-      <span style="width:8px"></span>
-      <a href="#mov">Movies</a>
-      <span style="width:8px"></span>
-      <a href="#iconic-figures">Iconic Figures</a>
-      <span style="width:8px"></span>
+    <div class="nav-pill">
+      <a href="#books">Books</a><span style="width:8px"></span>
+      <a href="#movies">Movies</a><span style="width:8px"></span>
+      <a href="#figures">Figures</a><span style="width:8px"></span>
       <a href="#events">Events</a>
     </div>
   </div>
@@ -458,435 +310,312 @@
 
 <main class="container">
 
-  <!-- Books (Earth mood) -->
-  <section id="books" class="section" style="position:relative;">
-    <div class="section-head"><h2 style="color:black;">Books Worthy Of Your Bookshelf </h2></div>
-    <div class="masonry" id="books-grid" aria-live="polite"></div>
+  <!-- BOOKS SECTION -->
+  <section id="books" class="section">
+    <div class="section-head"><h2>Books Worthy Of Your Bookshelf</h2></div>
+    <div class="central-display books-central">
+      <div class="central-stone" id="books-central">
+        <div class="central-icon">📚</div>
+        <h3 class="central-title">Zero Waste Home</h3>
+        <p class="central-creator">Bea Johnson</p>
+        <p class="central-desc">The ultimate guide to simplifying your life by reducing your waste</p>
+      </div>
+      <div class="bubble-orbit bubble-orbit-1">
+        <div class="bubble small bubble-color-1 pulse"></div>
+        <div class="bubble medium bubble-color-2 float"></div>
+        <div class="bubble small bubble-color-3"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-2">
+        <div class="bubble medium bubble-color-2"></div>
+        <div class="bubble large bubble-color-1 float"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+        <div class="bubble large bubble-color-3"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-3">
+        <div class="bubble small bubble-color-3 float"></div>
+        <div class="bubble medium bubble-color-1"></div>
+        <div class="bubble small bubble-color-2 pulse"></div>
+        <div class="bubble medium bubble-color-4"></div>
+      </div>
+    </div>
+    <div class="masonry" id="books-grid"></div>
   </section>
 
-  <!-- Movs (Air mood) -->
-<section id="mov" class="section" style="position:relative;">
-  <div class="section-head"><h2 style="color:black">Remarkable Movies</h2></div>
-  
-  <!-- Video Background Container -->
-  <div id="mov-grid" style="position: relative; padding: 2rem; border-radius: 20px; margin: 2rem 0; overflow: hidden; min-height: 400px;">
-    <!-- Video Element -->
-    <video 
-      autoplay 
-      muted 
-      loop 
-      playsinline 
-      style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -1;
-        border-radius: 20px;
-      ">
-     
-      <source src="./images/7d0bd2e0-925e-489b-bb38-5f440b971b61.mp4" type="video/mp4">
-      Your browser does not support the video tag yeh.
-    </video>
-
-    <!-- Dark overlay to neutralize video -->
-    <div style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1;
-      border-radius: 20px;
-    "></div>
-    
-    <!-- Your masonry grid -->
-    <div class="masonry" id="mov-grid-content" style="position: relative; z-index: 2;"></div>
-  </div>
-</section>
-
-  <!-- Iconic Figures (Fire mood) -->
-  <section id="iconic-figures" class="section" style="position:relative;">
-    <div class="section-head"><h2 style="color: black;">Iconic Figures</h2></div>
-    <div class="masonry" id="figs-grid"></div>
+  <!-- MOVIES SECTION -->
+  <section id="movies" class="section">
+    <div class="section-head"><h2>Remarkable Movies</h2></div>
+    <div class="central-display movies-central">
+      <div class="central-stone" id="movies-central">
+        <div class="central-icon">🎬</div>
+        <h3 class="central-title">No Impact Man</h3>
+        <p class="central-creator">Laura Gambert</p>
+        <p class="central-desc">Documentary on family living with sustainable practices</p>
+      </div>
+      <div class="bubble-orbit bubble-orbit-1">
+        <div class="bubble small bubble-color-1 pulse"></div>
+        <div class="bubble medium bubble-color-2 float"></div>
+        <div class="bubble small bubble-color-3"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-2">
+        <div class="bubble medium bubble-color-2"></div>
+        <div class="bubble large bubble-color-1 float"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+        <div class="bubble large bubble-color-3"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-3">
+        <div class="bubble small bubble-color-3 float"></div>
+        <div class="bubble medium bubble-color-1"></div>
+        <div class="bubble small bubble-color-2 pulse"></div>
+        <div class="bubble medium bubble-color-4"></div>
+      </div>
+    </div>
+    <div class="masonry" id="movies-grid"></div>
   </section>
 
-  <!-- Events (Water mood) -->
-  <section id="events" class="section" style="position:relative;">
+  <!-- FIGURES SECTION -->
+  <section id="figures" class="section">
+    <div class="section-head"><h2>Iconic Figures</h2></div>
+    <div class="central-display figures-central">
+      <div class="central-stone" id="figures-central">
+        <img src="./images/kamaladevi.jpg" alt="Kamaladevi" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid white; margin-bottom: 1rem;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjRCOTQyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JY29uPC90ZXh0Pjwvc3ZnPg=='">
+        <h3 class="central-title">Kamaladevi Chattopadhyay</h3>
+        <p class="central-creator">Cultural Revivalist</p>
+        <p class="central-desc">Pioneer in reviving India's handloom sector and traditional crafts</p>
+      </div>
+      <div class="bubble-orbit bubble-orbit-1">
+        <div class="bubble small bubble-color-1 pulse"></div>
+        <div class="bubble medium bubble-color-2 float"></div>
+        <div class="bubble small bubble-color-3"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-2">
+        <div class="bubble medium bubble-color-2"></div>
+        <div class="bubble large bubble-color-1 float"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+        <div class="bubble large bubble-color-3"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-3">
+        <div class="bubble small bubble-color-3 float"></div>
+        <div class="bubble medium bubble-color-1"></div>
+        <div class="bubble small bubble-color-2 pulse"></div>
+        <div class="bubble medium bubble-color-4"></div>
+      </div>
+    </div>
+    <div class="masonry" id="figures-grid"></div>
+  </section>
+
+  <!-- EVENTS SECTION -->
+  <section id="events" class="section">
     <div class="section-head"><h2>Textile Events</h2></div>
+    <div class="central-display events-central">
+      <div class="central-stone" id="events-central">
+        <div class="central-icon">📅</div>
+        <h3 class="central-title">Textile Fairs India</h3>
+        <p class="central-creator">National Events</p>
+        <p class="central-desc">F&A Show, Yarnex, Texindia - Celebrating textile heritage</p>
+      </div>
+      <div class="bubble-orbit bubble-orbit-1">
+        <div class="bubble small bubble-color-1 pulse"></div>
+        <div class="bubble medium bubble-color-2 float"></div>
+        <div class="bubble small bubble-color-3"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-2">
+        <div class="bubble medium bubble-color-2"></div>
+        <div class="bubble large bubble-color-1 float"></div>
+        <div class="bubble medium bubble-color-4 pulse"></div>
+        <div class="bubble large bubble-color-3"></div>
+      </div>
+      <div class="bubble-orbit bubble-orbit-3">
+        <div class="bubble small bubble-color-3 float"></div>
+        <div class="bubble medium bubble-color-1"></div>
+        <div class="bubble small bubble-color-2 pulse"></div>
+        <div class="bubble medium bubble-color-4"></div>
+      </div>
+    </div>
     <div class="masonry" id="events-grid"></div>
   </section>
 
   <div style="margin:1.25rem 0;padding:1rem;background:linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));border-radius:14px;box-shadow:var(--shadow); border-left: 4px solid var(--primary)">
-    <h3 style="margin:0;color:black; font-family: 'Tektur', sans-serif;">Reflect & Rebalance</h3>
-    <p style="margin:.6rem 0 0;color:#444; font-family: 'Tektur', sans-serif; font-weight: 500;">What begins with water returns to it — every material we use enters the same cycle. Small conscious choices ripple outward.</p>
+    <h3 style="margin:0;color:black;">Reflect & Rebalance</h3>
+    <p style="margin:.6rem 0 0;color:#444; font-weight: 500;">What begins with water returns to it — every material we use enters the same cycle. Small conscious choices ripple outward.</p>
   </div>
 
 </main>
 
 <footer>
   <div style="max-width:900px;margin:0 auto;padding:.6rem 1rem; position: relative; z-index: 2;">
-    <div style="color:black;font-weight:700;margin-bottom:.45rem; font-family: 'Tektur', sans-serif;">Everyday Materials Centre</div>
-    <div style="font-size:.95rem;opacity:.98; font-family: 'Tektur', sans-serif; font-weight: 500;">Part of The Proximity Project — Bringing public problems closer by creating places where people can see, touch and talk about them.</div>
-    <div style="margin-top:.6rem;font-size:.95rem; font-family: 'Tektur', sans-serif; font-weight: 500;">Contact: <a href="mailto:explore@socratus.org" style="color:#fff;text-decoration:underline">explore@socratus.org</a></div>
+    <div style="color:black;font-weight:700;margin-bottom:.45rem;">Everyday Materials Centre</div>
+    <div style="font-size:.95rem;opacity:.98; font-weight: 500;">Part of The Proximity Project — Bringing public problems closer by creating places where people can see, touch and talk about them.</div>
+    <div style="margin-top:.6rem;font-size:.95rem; font-weight: 500;">Contact: <a href="mailto:explore@socratus.org" style="color:#fff;text-decoration:underline">explore@socratus.org</a></div>
   </div>
 </footer>
 
 <script>
-
-/* ========== Data with website links ========== */
-const textileData = {
+// Data for ALL sections
+// Data for ALL sections
+const data = {
   books: [
-    { 
-      title: "Zero Waste Home", 
-      creator: "Bea Johnson", 
-      description: "Children's/educational", 
-      externalUrl: "https://amzn.in/d/irGOnI2",
-      linkText: "Available on Amazon"
-    },
-    { 
-      title: "The Sustainable Living Guide", 
-      creator: "Jen Gale", 
-      description: "Environmental reports",
-      externalUrl: "https://amzn.in/d/fCiOmkg",
-      linkText: "Available on Amazon"
-    },
-    { 
-      title: "Sustainable Home", 
-      creator: "Christine Liu", 
-      description: "Literary/academic",
-      externalUrl: "https://amzn.in/d/7vse4Ak",
-      linkText: "Available on Amazon"
-    },
-    { 
-      title: "Dirt to Soil", 
-      creator: "Gabe Brown", 
-      description: "NA",
-      externalUrl: "https://amzn.in/d/2gxTjtZ",
-      linkText: "Available on Amazon"
-    },
-    { 
-      title: "101 ways to Go Zero", 
-      creator: "Kathryn Kellog", 
-      description: "Practical Guide",
-      externalUrl: "https://amzn.in/d/6trZ6iH",
-      linkText: "Available on Amazon"
-    },
-    { 
-      title: "Cradle to Cradle", 
-      creator: "William McDonough & M Braungart", 
-      description: "Sytem & Design",
-      externalUrl: "https://amzn.in/d/iY7UTMI",
-      linkText: "Available on Amazon"
-    },
-    { 
-      title: "The Book of Self-Sufficiency ", 
-      creator: "john Seymour", 
-      description: "Practical Guide",
-      externalUrl: "https://amzn.in/d/hllJJoI",
-      linkText: "Available on Amazon"
-    }
+    { title: "Zero Waste Home", creator: "Bea Johnson", description: "Children's/educational", url: "https://amzn.in/d/irGOnI2", icon: "📚" },
+    { title: "Sustainable Living Guide", creator: "Jen Gale", description: "Environmental reports", url: "https://amzn.in/d/fCiOmkg", icon: "🌱" },
+    { title: "Sustainable Home", creator: "Christine Liu", description: "Literary/academic", url: "https://amzn.in/d/7vse4Ak", icon: "🏠" },
+    { title: "Dirt to Soil", creator: "Gabe Brown", description: "Sustainable farming practices", url: "https://amzn.in/d/2gxTjtZ", icon: "🌾" },
+    { title: "101 ways to Go Zero", creator: "Kathryn Kellog", description: "Practical Guide", url: "https://amzn.in/d/6trZ6iH", icon: "💡" },
+    { title: "Cradle to Cradle", creator: "McDonough & Braungart", description: "System & Design", url: "https://amzn.in/d/iY7UTMI", icon: "🔄" }
   ],
-  mov: [
-    { 
-      title: "No Impact Man", 
-      creator: "Laura Gambert ", 
-      description: "Documentary on family living with sustainable practises", 
-      externalUrl: "https://en.wikipedia.org/wiki/No_Impact_Man",
-      linkText: "Rated 6.6"
-    },
-    { 
-      title: "The Clean Bean Project", 
-      creator: "Oscar Tuazon ", 
-      description: "Environmental film",
-      externalUrl: "https://www.imdb.com/title/tt1746836/",
-      linkText: "Rated 7.2"
-    },
-    { 
-      title: "Living the Change", 
-      creator: "Jordan Osmond ", 
-      description: "Explores solutions to the global crises we face today",
-      externalUrl: "https://www.imdb.com/title/tt8115474/",
-      linkText: "Rated 7.0"
-    },
-    { 
-      title: "Down to Earth with Zac Efron", 
-      creator: "Zac Efron ", 
-      description: "Zac Efron journeys around the world with wellness expert Darin Olien",
-      externalUrl: "https://www.imdb.com/title/tt12585152/?ref_=fn_t_1",
-      linkText: "Rated 8.0"
-    },
-    { 
-      title: "Laila Gold (Short Film)", 
-      creator: "Prof Niranjan Vanalli", 
-      description: "This award winning short-film shows how a Karnataka village is turning waste into wealth",
-      externalUrl: "https://youtu.be/_2TUy6xD5TY?si=Bx0pabS9CnfIDdo_",
-      linkText: ""
-    },
-    { 
-      title: "Kadaisi Vivasayi (Tamil)", 
-      creator: "Vijay Sethupathy / M Manikanandan ", 
-      description: "Depicts the life of a traditional farmer practicing sustainable agriculture",
-      externalUrl: "https://www.imdb.com/title/tt10300570/?ref_=fn_t_1",
-      linkText: "Rated 8.7"
-    }
+  movies: [
+    { title: "No Impact Man", creator: "Laura Gambert", description: "Documentary on sustainable living", url: "https://en.wikipedia.org/wiki/No_Impact_Man", icon: "🎬" },
+    { title: "The Clean Bean Project", creator: "Oscar Tuazon", description: "Environmental film", url: "https://www.imdb.com/title/tt1746836/", icon: "🌍" },
+    { title: "Living the Change", creator: "Jordan Osmond", description: "Solutions to global crises", url: "https://www.imdb.com/title/tt8115474/", icon: "✨" },
+    { title: "Down to Earth", creator: "Zac Efron", description: "Wellness journey worldwide", url: "https://www.imdb.com/title/tt12585152/", icon: "✈️" },
+    { title: "Laila Gold", creator: "Prof Niranjan", description: "Waste to wealth in Karnataka", url: "https://youtu.be/_2TUy6xD5TY", icon: "💰" },
+    { title: "Kadaisi Vivasayi", creator: "Vijay Sethupathy", description: "Traditional farming practices", url: "https://www.imdb.com/title/tt10300570/", icon: "👨‍🌾" }
   ],
-  iconicFigures: [
-  { 
-    title: "Kamaladevi Chattopadhyay", 
-    creator: "", 
-    description: "Revived handloom sector, founded institutions",
-    image: "./"
-  },
-  { 
-    title: "Pupul Jayakar", 
-    creator: "", 
-    description: "Documented & promoted handlooms",
-    image: "./images/pupuljayakar.jpg"
-  },
-  { 
-    title: "Laila Tyabji", 
-    creator: "", 
-    description: "Founder of Dastkar, grassroots weavers",
-    image: "./images/lailatyabji.jpg"
-  },
-  { 
-    title: "Rta Kapur Chishti", 
-    creator: "", 
-    description: "Scholar, Saris of India series",
-    image: "./images/rtakapur.jpg"
-  },
-  { 
-    title: "Ela Bhatt", 
-    creator: "", 
-    description: "Founded SEWA, empowered artisans",
-    image: "./images/elabhatt.jpg"
-  },
-  { 
-    title: "Martand Singh ('Mapu')", 
-    creator: "", 
-    description: "Curator of Visvakarma Exhibitions",
-    image: "./images/martandsingh.jpg"
-  }
-],
-
+  figures: [
+    { title: "Kamaladevi Chattopadhyay", creator: "Cultural Revivalist", description: "Revived handloom sector", image: "./images/kamaladevi.jpg", icon: "⭐" },
+    { title: "Pupul Jayakar", creator: "Documentarian", description: "Documented handlooms", image: "./images/pupul.jpg", icon: "📖" },
+    { title: "Laila Tyabji", creator: "Grassroots Leader", description: "Founder of Dastkar", image: "./images/laila.jpg", icon: "👩‍🎨" },
+    { title: "Rta Kapur Chishti", creator: "Scholar", description: "Saris of India series", image: "./images/rta.jpg", icon: "🎓" },
+    { title: "Ela Bhatt", creator: "Social Entrepreneur", description: "Founded SEWA", image: "./images/ela.jpg", icon: "💪" },
+    { title: "Martand Singh", creator: "Curator", description: "Visvakarma Exhibitions", image: "./images/martand.jpg", icon: "🖼️" }
+  ],
   events: [
-    { title: "Textile Fairs India", creator: "", description: "F&A Show, Yarnex, Texindia" },
-    { title: "Weaver cooperatives", creator: "Karnataka clusters", description: "Ilkal, Ramanagara" }
+    { title: "Textile Fairs India", creator: "National Platform", description: "F&A Show, Yarnex, Texindia", icon: "🎪" },
+    { title: "Weaver Cooperatives", creator: "Karnataka Clusters", description: "Ilkal, Ramanagara hubs", icon: "👥" },
+    { title: "Craft Workshops", creator: "Hands-on Learning", description: "Traditional craft sessions", icon: "🛠️" },
+    { title: "Sustainability Talks", creator: "Expert Sessions", description: "Industry insights sharing", icon: "🎤" }
   ]
 };
 
-/* Size pattern for organic masonry */
-const sizePattern = ['g-s4','g-s2','g-s6','g-s1','g-s5','g-s3','g-s2','g-s6'];
-
-/* category meta */
-const categoryMeta = {
-  books: { cls: 'earth', emoji:'', short:'Books' },
-  mov: { cls: 'air', emoji:'', short:'Movies' },
-  'iconic-figures': { cls: 'fire', emoji:'', short:'Figures' },
-  events: { cls: 'water', emoji:'', short:'Events' }
+// Size patterns for consistent masonry layout
+const sizePatterns = {
+  books: ['medium', 'small', 'medium', 'large', 'small', 'medium'],
+  movies: ['medium', 'small', 'medium', 'large', 'small', 'medium'],
+  figures: ['medium', 'small', 'medium', 'large', 'small', 'medium'],
+  events: ['medium', 'small', 'medium', 'large']
 };
 
-/* deterministic irregular radii & rotation patterns for natural look */
-const radiusPatterns = [
-  '48% 52% 38% 62% / 44% 36% 64% 56%',
-  '56% 40% 68% 32% / 50% 60% 40% 50%',
-  '42% 58% 54% 46% / 36% 62% 38% 54%',
-  '60% 34% 50% 50% / 54% 34% 60% 52%',
-  '46% 46% 56% 52% / 48% 40% 56% 56%',
-  '52% 60% 30% 58% / 50% 52% 46% 58%',
-  '40% 44% 66% 46% / 36% 34% 66% 54%',
-  '62% 36% 46% 56% / 58% 44% 36% 62%'
-];
-const rotatePattern = [ -2, 1.5, -1, 2.2, -1.6, 0.8, 2.8, -1.2 ];
+// Stone color classes for each section
+const sectionColors = {
+  books: 'earth',
+  movies: 'air', 
+  figures: 'fire',
+  events: 'water'
+};
 
-/* helper */
-function mk(tag, txt, cls){
-  const el = document.createElement(tag);
-  if(txt) el.textContent = txt;
-  if(cls) el.className = cls;
-  return el;
-}
-
-/* Show external link confirmation */
-function showLinkConfirmation(siteName) {
-  // Remove any existing confirmation
-  const existingConfirmation = document.querySelector('.download-confirmation');
-  if (existingConfirmation) {
-    existingConfirmation.remove();
-  }
-  
-  // Create confirmation element
-  const confirmation = document.createElement('div');
-  confirmation.className = 'download-confirmation';
-  confirmation.textContent = `Opening: ${siteName}`;
-  confirmation.style.animation = 'slideIn 0.3s ease';
-  
-  document.body.appendChild(confirmation);
-  
-  // Remove confirmation after 3 seconds
-  setTimeout(() => {
-    confirmation.style.animation = 'slideOut 0.5s ease';
-    setTimeout(() => {
-      if (confirmation.parentNode) {
-        confirmation.parentNode.removeChild(confirmation);
-      }
-    }, 300);
-  }, 3000);
-}
-
-/* build a stone tile */
-function buildStone(item, categoryKey, idx){
-  const stone = mk('article','', 'stone '+(categoryMeta[categoryKey] ? categoryMeta[categoryKey].cls : 'stone'));
-  const sizeClass = sizePattern[idx % sizePattern.length] || 'g-s2';
-  stone.classList.add(sizeClass);
-
-  // IMG Img Handler
-  // Add special class for video section stones
-  if (categoryKey === 'mov') {
-    stone.classList.add('video-section-stone');
-  }
-
-  // unique organic border-radius and rotation (deterministic by idx)
-  const r = radiusPatterns[idx % radiusPatterns.length];
-  const rot = rotatePattern[idx % rotatePattern.length];
-  stone.style.borderRadius = r;
-  stone.style.transform = `rotate(${rot}deg)`;
-
-  // Add click cursor and title for items with external links
-  if ((categoryKey === 'books' || categoryKey === 'mov') && item.externalUrl) {
-    stone.style.cursor = 'pointer';
-    stone.title = 'Click to visit website';
-  }
-
-  // inner surface
-  const surface = mk('div','', 'surface');
-  const label = mk('div','', 'label');
-  const emoji = mk('div', (categoryMeta[categoryKey] ? categoryMeta[categoryKey].emoji : ''), 'emoji');
-  const short = mk('div', (categoryMeta[categoryKey] ? categoryMeta[categoryKey].short : ''), 'cat-short');
-  
-
-  // meta (creator)
-  const meta = mk('div', item.creator ? `${item.creator}` : '', 'meta');
-  if (item.creatorColor) {
-    meta.style.color = item.creatorColor;
-    meta.style.fontWeight = 600;
-  }
-
-  // title & desc
-  const title = mk('h3', item.title, 'title');
-  const desc = mk('p', item.description || '', 'desc');
-
-  // Add link indicator for items with external links
-  if ((categoryKey === 'books' || categoryKey === 'mov') && item.externalUrl) {
-    const linkIndicator = mk('div', item.linkText || 'Visit Website', 'link-indicator');
-    surface.appendChild(linkIndicator);
-  }
-
-  // decorative shine element
-  const shine = mk('div','', 'shine');
-
-  // assemble
-  surface.appendChild(label);
-  surface.appendChild(meta);
-  surface.appendChild(title);
-  surface.appendChild(desc);
-  stone.appendChild(shine);
-  stone.appendChild(surface);
-
-  // FIXED: Click handler - External links for books and movies
-  stone.addEventListener('click', (e)=>{
-    if ((categoryKey === 'books' || categoryKey === 'mov') && item.externalUrl) {
-      // Open external website in new tab
-      window.open(item.externalUrl, '_blank', 'noopener,noreferrer');
-      
-      // Visual feedback
-      stone.style.transition = 'transform .12s ease, background-color .3s ease';
-      stone.style.backgroundColor = categoryKey === 'books' ? 'rgba(93, 187, 170, 0.3)' : 'rgba(72, 219, 251, 0.3)';
-      
-      // Show confirmation
-      showLinkConfirmation(item.title);
-      
-      // Reset background color after a delay
-      setTimeout(() => {
-        stone.style.backgroundColor = '';
-      }, 1000);
-      
-    } else {
-      // Existing behavior for other sections
-      stone.style.transition='transform .12s ease';
-      stone.style.transform += ' translateY(-4px)';
-      setTimeout(()=> {
-        stone.style.transform = `rotate(${rot}deg)`;
-      },120);
-      showTransientTip(stone, 'Tap again to open details (future).');
-    }
+// Initialize ALL sections
+document.addEventListener('DOMContentLoaded', () => {
+  // Populate all masonry grids
+  Object.keys(data).forEach(section => {
+    const grid = document.getElementById(`${section}-grid`);
     
-    // FIX: Prevent default to avoid any conflict with scrolling
-    e.preventDefault();
-    e.stopPropagation();
+    // Clear any existing content
+    grid.innerHTML = '';
+    
+    // Add stones for each item in the section
+    data[section].forEach((item, index) => {
+      const sizeClass = sizePatterns[section][index % sizePatterns[section].length] || 'medium';
+      const colorClass = sectionColors[section];
+      
+      const stone = document.createElement('div');
+      stone.className = `stone ${colorClass} ${sizeClass}`;
+      
+      let imageHTML = '';
+      if (section === 'figures' && item.image) {
+      imageHTML = `<img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">`;
+    }
+
+      stone.innerHTML = `
+      ${imageHTML}
+      <div class="surface">
+      <div class="stone-icon">${item.icon}</div>
+      <h3 class="stone-title">${item.title}</h3>
+      <div class="stone-meta">${item.creator}</div>
+      <div class="stone-desc">${item.description}</div>
+      ${item.url ? '<div class="stone-link">Click to visit</div>' : ''}
+      </div>
+    `;
+
+      
+      stone.addEventListener('click', () => {
+        // Scroll to the central display of this section
+        const sectionElement = document.getElementById(section);
+        const centralDisplay = sectionElement.querySelector('.central-display');
+        
+        // Smooth scroll to the central display
+        centralDisplay.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center'
+        });
+        
+        // Update the central display with the clicked item
+        updateCentralDisplay(item, section);
+        
+        // Visual feedback
+        stone.style.background = 'rgba(255,255,255,0.5)';
+        setTimeout(() => stone.style.background = '', 500);
+      });
+      
+      grid.appendChild(stone);
+    });
   });
 
-  return stone;
-}
-
-/* small transient tip */
-function showTransientTip(anchor, text){
-  let tip = anchor._tip;
-  if(tip){ tip.remove(); anchor._tip = null; }
-  tip = document.createElement('div');
-  tip.textContent = text;
-  tip.style.position='absolute';
-  tip.style.left='12px';
-  tip.style.bottom='12px';
-  tip.style.padding='8px 10px';
-  tip.style.fontSize='12px';
-  tip.style.background='rgba(0,0,0,0.6)';
-  tip.style.color='#fff';
-  tip.style.borderRadius='10px';
-  tip.style.zIndex=40;
-  tip.style.opacity='0';
-  tip.style.transition='opacity .22s ease, transform .22s ease';
-  anchor.appendChild(tip);
-  requestAnimationFrame(()=>{ tip.style.opacity='1'; tip.style.transform='translateY(-4px)'; });
-  anchor._tip = tip;
-  setTimeout(()=>{ if(tip){ tip.style.opacity='0'; tip.style.transform='translateY(0)'; setTimeout(()=>tip.remove(),240); anchor._tip=null } }, 1500);
-}
-
-/* populate grid */
-function populateGrid(gridId, arr, categoryKey){
-  const grid = document.getElementById(gridId);
-  if(!grid) return;
-  arr.forEach((item, i)=>{
-    const stone = buildStone(item, categoryKey, i);
-    grid.appendChild(stone);
+  // Add bubble interactions
+  document.querySelectorAll('.bubble').forEach(bubble => {
+    bubble.addEventListener('mouseenter', () => {
+      bubble.style.boxShadow = '0 0 20px rgba(255,255,255,0.8), 0 15px 35px rgba(0,0,0,0.25)';
+    });
+    bubble.addEventListener('mouseleave', () => {
+      bubble.style.boxShadow = '0 8px 20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.4)';
+    });
   });
-}
-
-/* initialize */
-document.addEventListener('DOMContentLoaded', ()=>{
-  populateGrid('books-grid', textileData.books, 'books');
-  populateGrid('mov-grid-content', textileData.mov, 'mov');
-  populateGrid('figs-grid', textileData.iconicFigures, 'iconic-figures');
-  populateGrid('events-grid', textileData.events, 'events');
-
-  // scroll parallax for header shapes (lightweight)
-  let last = 0;
-  window.addEventListener('scroll', ()=>{
-    const sc = window.scrollY || window.pageYOffset;
-    const fs1 = document.querySelector('.fs-1');
-    const fs2 = document.querySelector('.fs-2');
-    const fs3 = document.querySelector('.fs-3');
-    if(fs1) fs1.style.transform = `translateY(${sc * 0.04}px)`;
-    if(fs2) fs2.style.transform = `translateY(${sc * 0.02}px)`;
-    if(fs3) fs3.style.transform = `translateY(${sc * -0.03}px)`;
-    last = sc;
-  }, {passive:true});
 });
-</script>
 
+function updateCentralDisplay(item, section) {
+  const central = document.getElementById(`${section}-central`);
+  const sectionElement = document.getElementById(section);
+  const centralDisplay = sectionElement.querySelector('.central-display');
+  
+  // Add a highlight animation
+  central.style.transform = 'scale(0.95)';
+  setTimeout(() => {
+    central.style.transform = 'scale(1)';
+  }, 150);
+  
+  if (section === 'figures') {
+    central.innerHTML = `
+      <img src="${item.image}" alt="${item.title}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white; margin-bottom: 0.8rem;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjRCOTQyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JY29uPC90ZXh0Pjwvc3ZnPg=='">
+      <h3 class="central-title">${item.title}</h3>
+      <p class="central-creator">${item.creator}</p>
+      <p class="central-desc">${item.description}</p>
+    `;
+  } else {
+    central.innerHTML = `
+      <div class="central-icon">${item.icon}</div>
+      <h3 class="central-title">${item.title}</h3>
+      <p class="central-creator">${item.creator}</p>
+      <p class="central-desc">${item.description}</p>
+    `;
+  }
+
+  // Smooth scroll to central display
+  setTimeout(() => {
+    centralDisplay.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center'
+    });
+  }, 100);
+
+  if (item.url) {
+    central.style.cursor = 'pointer';
+    central.onclick = () => window.open(item.url, '_blank');
+  } else {
+    central.style.cursor = 'default';
+    central.onclick = null;
+  }
+}
+</script>
 </body>
 </html>
