@@ -684,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!item.url) return;
 
     // FIX: Amazon SHOULD NOT OPEN IN NEW TAB
-      if (item.url.includes("amazon")) || item.url.includes("amz.in")) {
+      if (item.url.includes("amazon") || item.url.includes("amz.in")) {
         window.location.href = item.url;   // same tab → back works
         return;
     }
