@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting…</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fafafa;
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+    .box {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    a {
+      color: #007aff;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    Redirecting you to Amazon…<br><br>
+    <small>If not redirected, <a id="manualLink" href="#">tap here</a>.</small>
+  </div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const target = params.get('url');
+
+  if (target) {
+    document.getElementById("manualLink").href = target;
+    setTimeout(() => {
+      window.location.href = target;
+    }, 400);
+  } else {
+    document.querySelector('.box').innerText = "Invalid redirect URL.";
+  }
+</script>
+
+</body>
+</html>

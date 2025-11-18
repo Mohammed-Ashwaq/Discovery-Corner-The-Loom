@@ -438,8 +438,7 @@ footer::before {
   <section id="books" class="section">
     <div class="section-head"><h2 style="color: black;">Books Worthy Of Your Time</h2></div>
     <div class="central-display books-central">
-      <div class="central-stone" id="books-central" onclick="window.location.href='https://amzn.in/d/irGOnI2'">
-        <div class="central-icon"></div>
+      <div class="central-stone" id="books-central" onclick="window.location.href='redirect.html?url=https://amzn.in/d/irGOnI2'"
         <h3 class="central-title">Zero Waste Home</h3>
         <p class="central-creator">Bea Johnson</p>
         <p class="central-desc">The ultimate guide to simplifying your life by reducing your waste</p>
@@ -676,26 +675,27 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       
       // Add click handler for external redirection
-      // Add click handler for external redirection
-    stone.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
 
-      if (!item.url) return;
+  stone.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    // FIX: Amazon SHOULD NOT OPEN IN NEW TAB
-      if (item.url.includes("amazon") || item.url.includes("amz.in")) {
-        window.location.href = item.url;   // same tab → back works
-        return;
+    if (!item.url) return;
+
+  // ⭐ AMAZON: Redirect through intermediate page
+    if (item.url.includes("amazon") || item.url.includes("amzn.in")) {
+    window.location.href = "redirect.html?url=" + encodeURIComponent(item.url);
+    return;
     }
 
-    // others can open in new tab
-    window.open(item.url, '_blank');
+  // ⭐ Others open normally in new tab
+    window.open(item.url, "_blank");
 
-    // Visual feedback
+  // Visual feedback
     stone.style.background = 'rgba(255,255,255,0.5)';
     setTimeout(() => stone.style.background = '', 500);
 });
+
 
       
       grid.appendChild(stone);
@@ -742,7 +742,7 @@ function updateCentralDisplay(item, section) {
   // Update central stone click handler
   if (item.url) {
     central.style.cursor = 'pointer';
-    central.onclick = () => window.location.href = item.url;
+    central.onclick = () => window.location.href = "redirect.html?url=" + encodeURIComponent(item.url);
   } else {
     central.style.cursor = 'default';
     central.onclick = null;
